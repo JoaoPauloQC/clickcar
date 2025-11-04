@@ -134,22 +134,86 @@ CREATE TABLE Pedido_Funcionario
  Quantidade INT NOT NULL,  
  Funcionario_id INT NOT NULL
 ); 
+-- ===== VEÍCULO / MARCA =====
+ALTER TABLE Veiculo 
+ADD FOREIGN KEY (Marca_id) REFERENCES Marca (ID);
 
-ALTER TABLE Veiculo ADD FOREIGN KEY(Marca_id) REFERENCES Marca (ID);
-ALTER TABLE Endereco ADD FOREIGN KEY(Cliente_ID) REFERENCES Cliente (ID);
-ALTER TABLE Pedido ADD FOREIGN KEY(Cliente_ID) REFERENCES Cliente (ID);
-ALTER TABLE Pedido ADD FOREIGN KEY(Veiculo_ID) REFERENCES Veiculo (ID);
-ALTER TABLE Pedido ADD FOREIGN KEY(Funcionario_ID) REFERENCES Funcionario (ID);
-ALTER TABLE Estoque ADD FOREIGN KEY(Veiculo_ID) REFERENCES Veiculo (ID);
-ALTER TABLE Estoque ADD FOREIGN KEY(Unidade_ID) REFERENCES Unidade (ID);
-ALTER TABLE Estoque ADD FOREIGN KEY(Pedido_Funcionario_ID) REFERENCES Pedido_Funcionario (ID);
-ALTER TABLE Funcionario ADD FOREIGN KEY(Cargo_ID) REFERENCES Cargo (ID);
-ALTER TABLE Pagamento ADD FOREIGN KEY(Pedido_ID) REFERENCES Pedido (ID);
-ALTER TABLE Telefone ADD FOREIGN KEY(Cliente_ID) REFERENCES Cliente (ID);
-ALTER TABLE Entrega ADD FOREIGN KEY(Pedido_ID) REFERENCES Pedido (ID);
-ALTER TABLE Entrega ADD FOREIGN KEY(Endereco_ID) REFERENCES Endereco (ID);
-ALTER TABLE Contato_Fornecedor ADD FOREIGN KEY(Fornecedor_ID) REFERENCES Fornecedor (ID);
-ALTER TABLE Fornecimento ADD FOREIGN KEY(Veiculo_ID) REFERENCES Veiculo (ID);
-ALTER TABLE Fornecimento ADD FOREIGN KEY(Fornecedor_ID) REFERENCES Fornecedor (ID);
-ALTER TABLE Pedido_Funcionario ADD FOREIGN KEY(Fornecimento_ID) REFERENCES Fornecimento (ID);
-ALTER TABLE Pedido_Funcionario ADD FOREIGN KEY(Funcionario_id) REFERENCES Funcionario (ID);
+-- ===== ENDEREÇO / CLIENTE =====
+ALTER TABLE Endereco 
+ADD FOREIGN KEY (Cliente_ID) REFERENCES Cliente (ID)
+ON DELETE CASCADE;
+
+-- ===== TELEFONE / CLIENTE =====
+ALTER TABLE Telefone 
+ADD FOREIGN KEY (Cliente_ID) REFERENCES Cliente (ID)
+ON DELETE CASCADE;
+
+-- ===== PEDIDO / CLIENTE =====
+ALTER TABLE Pedido 
+ADD FOREIGN KEY (Cliente_ID) REFERENCES Cliente (ID)
+ON DELETE CASCADE;
+
+-- ===== PEDIDO / VEÍCULO =====
+ALTER TABLE Pedido 
+ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculo (ID);
+
+-- ===== PEDIDO / FUNCIONÁRIO =====
+ALTER TABLE Pedido 
+ADD FOREIGN KEY (Funcionario_ID) REFERENCES Funcionario (ID);
+
+-- ===== FUNCIONÁRIO / CARGO =====
+ALTER TABLE Funcionario 
+ADD FOREIGN KEY (Cargo_ID) REFERENCES Cargo (ID);
+
+-- ===== PAGAMENTO / PEDIDO =====
+ALTER TABLE Pagamento 
+ADD FOREIGN KEY (Pedido_ID) REFERENCES Pedido (ID)
+ON DELETE CASCADE;
+
+-- ===== ENTREGA / PEDIDO =====
+ALTER TABLE Entrega 
+ADD FOREIGN KEY (Pedido_ID) REFERENCES Pedido (ID)
+ON DELETE CASCADE;
+
+-- ===== ENTREGA / ENDEREÇO =====
+ALTER TABLE Entrega 
+ADD FOREIGN KEY (Endereco_ID) REFERENCES Endereco (ID)
+ON DELETE CASCADE;
+
+-- ===== ESTOQUE / VEÍCULO =====
+ALTER TABLE Estoque 
+ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculo (ID)
+ON DELETE CASCADE;
+
+-- ===== ESTOQUE / UNIDADE =====
+ALTER TABLE Estoque 
+ADD FOREIGN KEY (Unidade_ID) REFERENCES Unidade (ID);
+
+-- ===== ESTOQUE / PEDIDO FUNCIONÁRIO =====
+ALTER TABLE Estoque 
+ADD FOREIGN KEY (Pedido_Funcionario_ID) REFERENCES Pedido_Funcionario (ID)
+ON DELETE CASCADE;
+
+-- ===== CONTATO FORNECEDOR / FORNECEDOR =====
+ALTER TABLE Contato_Fornecedor 
+ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedor (ID)
+ON DELETE CASCADE;
+
+-- ===== FORNECIMENTO / VEÍCULO =====
+ALTER TABLE Fornecimento 
+ADD FOREIGN KEY (Veiculo_ID) REFERENCES Veiculo (ID)
+ON DELETE CASCADE;
+
+-- ===== FORNECIMENTO / FORNECEDOR =====
+ALTER TABLE Fornecimento 
+ADD FOREIGN KEY (Fornecedor_ID) REFERENCES Fornecedor (ID)
+ON DELETE CASCADE;
+
+-- ===== PEDIDO FUNCIONÁRIO / FORNECIMENTO =====
+ALTER TABLE Pedido_Funcionario 
+ADD FOREIGN KEY (Fornecimento_ID) REFERENCES Fornecimento (ID)
+ON DELETE CASCADE;
+
+-- ===== PEDIDO FUNCIONÁRIO / FUNCIONÁRIO =====
+ALTER TABLE Pedido_Funcionario 
+ADD FOREIGN KEY (Funcionario_id) REFERENCES Funcionario (ID);

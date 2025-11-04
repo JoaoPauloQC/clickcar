@@ -2,6 +2,9 @@
 INSERT INTO Marca (Nome) VALUES
 ('Toyota'),
 ('Honda'),
+('Peugeot'),
+('Renault'),
+('Mitsubishi'),
 ('Chevrolet'),
 ('Ford'),
 ('Nissan'),
@@ -14,6 +17,9 @@ INSERT INTO Veiculo (Marca_id, Nome, Modelo, Ano, Tipo, Preco) VALUES
 (1, 'Corolla', 'XEi', 2022, 'Sedan', 130000),
 (1, 'Hilux', 'SRX', 2023, 'Pickup', 260000),
 (2, 'Civic', 'Touring', 2021, 'Sedan', 150000),
+(9, '208', 'Allure', 2023, 'Hatch', 92000),
+(10, 'Duster', 'Intense', 2022, 'SUV', 120000),
+(11, 'L200 Triton', 'Sport GLS', 2024, 'Pickup', 230000),
 (2, 'HR-V', 'EXL', 2023, 'SUV', 175000),
 (3, 'Onix', 'LT', 2022, 'Hatch', 95000),
 (4, 'Ranger', 'Limited', 2023, 'Pickup', 240000),
@@ -48,7 +54,10 @@ INSERT INTO Cliente (Nome, Email, Senha, CPF) VALUES
 ('Ricardo Almeida', 'ricardo.almeida@email.com', 'senha321', '678.901.234-55'),
 ('Laura Castro', 'laura.castro@email.com', 'abc321', '789.012.345-66'),
 ('Tiago Mello', 'tiago.mello@email.com', 'xyz789', '890.123.456-77'),
-('Julia Rocha', 'julia@mail.com', 'pass', '999.888.777-66');
+('Julia Rocha', 'julia@mail.com', 'pass', '999.888.777-66'),
+('Fernanda Silva', 'fernanda@mail.com', 'abc123', '111.333.555-77'),
+('Eduardo Santos', 'eduardo@mail.com', 'pass321', '222.444.666-88'),
+('Patrícia Gomes', 'patricia@mail.com', 'xyz123', '333.555.777-99');
 
 -- ===== ENDEREÇOS =====
 INSERT INTO Endereco (Rua, Cidade, Estado, Complemento, Numero, Cliente_ID) VALUES
@@ -59,6 +68,9 @@ INSERT INTO Endereco (Rua, Cidade, Estado, Complemento, Numero, Cliente_ID) VALU
 ('Rua dos Pinheiros', 'São Paulo', 'SP', 'Apto 102', 210, 6),
 ('Av. Atlântica', 'Rio de Janeiro', 'RJ', NULL, 1500, 7),
 ('Rua das Palmeiras', 'Salvador', 'BA', 'Casa 3', 45, 8),
+('Rua Bela Vista', 'Recife', 'PE', 'Casa 4', 87, 9),
+('Av. Boa Viagem', 'Recife', 'PE', NULL, 1020, 10),
+('Rua dos Coqueiros', 'Fortaleza', 'CE', 'Apto 502', 310, 11),
 ('Av. Brasil', 'Porto Alegre', 'RS', NULL, 55, 5);
 
 -- ===== TELEFONES =====
@@ -109,7 +121,10 @@ INSERT INTO Pedido (Cliente_ID, Veiculo_ID, Funcionario_ID) VALUES
 (6, 6, 5),
 (7, 7, 6),
 (8, 8, 5),
-(5, 8, 1);
+(5, 8, 1),
+(9, 9, 1),
+(10, 10, 4),
+(11, 11, 1);
 
 -- ===== PEDIDO FUNCIONÁRIO =====
 INSERT INTO Pedido_Funcionario (Fornecimento_ID, Quantidade, Funcionario_id) VALUES
@@ -138,7 +153,10 @@ INSERT INTO Pagamento (Pedido_ID, Metodo, Valor, Data) VALUES
 (6, 'Pix', 135000, '2025-05-01'),
 (7, 'Cartão de Crédito', 98000, '2025-05-03'),
 (8, 'Transferência Bancária', 180000, '2025-05-05'),
-(5, 'Cartão de Crédito', 145000, '2024-08-20');
+(5, 'Cartão de Crédito', 145000, '2024-08-20'),
+(9, 'Pix', 92000, '2025-06-10'),
+(10, 'Cartão de Crédito', 120000, '2025-06-12'),
+(11, 'Boleto', 230000, '2025-06-15');
 
 -- ===== ENTREGAS =====
 INSERT INTO Entrega (Pedido_ID, Status, Data, Endereco_ID) VALUES
@@ -149,4 +167,7 @@ INSERT INTO Entrega (Pedido_ID, Status, Data, Endereco_ID) VALUES
 (6, 'Em trânsito', '2025-05-02', 6),
 (7, 'Entregue', '2025-05-04', 7),
 (8, 'Pendente', '2025-05-06', 8),
-(5, 'Entregue', '2024-08-22', 5);
+(5, 'Entregue', '2024-08-22', 5),
+(9, 'Pendente', '2025-06-12', 9),
+(10, 'Em trânsito', '2025-06-14', 10),
+(11, 'Entregue', '2025-06-16', 11);
